@@ -11,6 +11,7 @@ from .foto import Foto
 class FotoSort:
     INCLUDE_SUFFIX = {
         ".avi",
+        ".bmp",
         ".jpeg",
         ".jpg",
         ".mov",
@@ -105,7 +106,11 @@ class FotoSort:
 
     def foto_copy(self, photo):
         new_file = self.new_file_location(photo)
-        shutil.copy(photo.path, new_file)
+        try:
+            shutil.copy2(photo.path, new_file)
+        except:  # noqa: E722
+            # no idea what error copy2 will throw, Docs are unspecific
+            shutil.copy(photo.path, new_file)
         self.foto_insert(photo)
 
     def run(self):
