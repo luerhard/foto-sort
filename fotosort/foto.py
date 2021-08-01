@@ -1,5 +1,6 @@
 import datetime as dt
 import hashlib
+import logging
 from typing import Dict
 from typing import Optional
 from typing import Tuple
@@ -7,6 +8,8 @@ from typing import Tuple
 import reverse_geocode
 from PIL import Image
 from PIL import UnidentifiedImageError
+
+logger = logging.getLogger()
 
 
 class Foto:
@@ -38,8 +41,7 @@ class Foto:
         try:
             with Image.open(self.path) as img:
                 img = img.tobytes()
-
-        except UnidentifiedImageError:
+        except (UnidentifiedImageError, OSError):
             img = self.path.read_bytes()
 
         self._file_hash = hashlib.sha1(img).hexdigest()
