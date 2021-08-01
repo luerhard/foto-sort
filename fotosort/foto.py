@@ -88,7 +88,7 @@ class Foto:
             return self._datetime
 
         # try other fallback dates
-        meta = self.exif.get_metadata(self.path)
+        meta = self.exif.get_metadata(str(self.path))
 
         datetime = meta.get("RIFF:DateCreated")
         if datetime:
