@@ -1,7 +1,7 @@
 #!python3
-
-from pathlib import Path
 import logging
+from pathlib import Path
+
 import click
 
 from .fotosort import FotoSort

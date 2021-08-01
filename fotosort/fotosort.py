@@ -1,9 +1,11 @@
-from pathlib import Path
-import sqlite3
-from tqdm import tqdm
 import shutil
-from .foto import Foto
+import sqlite3
+from pathlib import Path
+
 import exiftool
+from tqdm import tqdm
+
+from .foto import Foto
 
 
 class FotoSort:
@@ -69,7 +71,8 @@ class FotoSort:
         i = 0
         while True:
             i += 1
-            new = (path.parent / (str(path.stem) + f"_{i}")).with_suffix(path.suffix)
+            new = path.parent / (str(path.stem) + f"_{i}")
+            new = new.with_suffix(path.suffix)
             if not new.is_file():
                 return new
 
@@ -96,7 +99,7 @@ class FotoSort:
 
         file_path.mkdir(parents=True, exist_ok=True)
         new = self.non_conflicting_filename(
-            (file_path / filename).with_suffix(photo.path.suffix)
+            (file_path / filename).with_suffix(photo.path.suffix),
         )
         return new
 

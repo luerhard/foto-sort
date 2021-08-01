@@ -1,7 +1,12 @@
-from typing import Dict, Optional, Tuple
-import reverse_geocode
 import datetime as dt
 import hashlib
+from typing import Dict
+from typing import Optional
+from typing import Tuple
+
+import reverse_geocode
+from PIL import Image
+from PIL import UnidentifiedImageError
 
 
 class Foto:
@@ -30,7 +35,14 @@ class Foto:
         if self._file_hash:
             return self._file_hash
 
-        self._file_hash = hashlib.sha1(self.path.read_bytes()).hexdigest()
+        try:
+            with Image.open(self.path) as img:
+                img = img.tobytes()
+
+        except UnidentifiedImageError:
+            img = self.path.read_bytes()
+
+        self._file_hash = hashlib.sha1(img).hexdigest()
         return self._file_hash
 
     def coordinates(self) -> Optional[Tuple[float, float]]:
@@ -63,14 +75,16 @@ class Foto:
         if self._datetime:
             return self._datetime
 
+        STD_FMT = "%Y:%m:%d %H:%M:%S"
+
         datetime = self.meta.get("EXIF:CreateDate")
         if datetime:
-            self._datetime = dt.datetime.strptime(datetime, "%Y:%m:%d %H:%M:%S")
+            self._datetime = dt.datetime.strptime(datetime, STD_FMT)
             return self._datetime
 
         datetime = self.meta.get("EXIF:DateTimeOriginal")
         if datetime:
-            self._datetime = dt.datetime.strptime(datetime, "%Y:%m:%d %H:%M:%S")
+            self._datetime = dt.datetime.strptime(datetime, STD_FMT)
             return self._datetime
 
         # try other fallback dates
@@ -83,5 +97,5 @@ class Foto:
 
         datetime = meta.get("Composite:DateTimeOriginal")
         if datetime:
-            self._datetime = dt.datetime.strptime(datetime, "%Y:%m:%d %H:%M:%S")
+            self._datetime = dt.datetime.strptime(datetime, STD_FMT)
             return self._datetime
