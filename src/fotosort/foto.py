@@ -32,7 +32,10 @@ class Foto:
         self._datetime = None
 
     def _read_metadata(self):
-        return self.exif.get_tags(self.exif_tags, str(self.path))
+        meta = self.exif.get_tags(str(self.path), self.exif_tags)
+        if len(meta) != 1:
+            raise Exception("Number of passed files != 1!")
+        return meta[0]
 
     def file_hash(self):
         if self._file_hash:
@@ -91,6 +94,9 @@ class Foto:
 
         # try other fallback dates
         meta = self.exif.get_metadata(str(self.path))
+        if len(meta) != 1:
+            raise Exception("Number of passed files != 1!")
+        meta = meta[0]
 
         datetime = meta.get("RIFF:DateCreated")
         if datetime:

@@ -14,8 +14,8 @@ def original():
 class TestFotoSort:
     @classmethod
     def setup_class(cls):
-        cls.tool = exiftool.ExifTool()
-        cls.tool.start()
+        cls.tool = exiftool.ExifToolHelper()
+        cls.tool.run()
 
     @classmethod
     def teardown_class(cls):

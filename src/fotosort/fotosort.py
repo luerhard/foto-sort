@@ -29,8 +29,8 @@ class FotoSort:
         self.dest_path = Path(dest)
         self.dest_path.mkdir(parents=True, exist_ok=True)
 
-        self.exiftool = exiftool.ExifTool()
-        self.exiftool.start()
+        self.exiftool = exiftool.ExifToolHelper()
+        self.exiftool.run()
 
         self.db = self.db_connect()
 
