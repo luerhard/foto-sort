@@ -5,7 +5,7 @@ from pathlib import Path
 import exiftool
 from tqdm import tqdm
 
-from .foto import Foto
+from fotosort.foto import Foto
 
 
 class FotoSort:
