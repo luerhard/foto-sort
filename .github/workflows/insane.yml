@@ -1,0 +1,29 @@
+on:
+  workflow_dispatch:
+    inputs:
+      version_increase:
+        description: "Version Update"
+        required: true
+        default: "prerelease"
+        type: choice
+        options:
+        - "prerelease"
+        - "patch"
+        - "minor"
+        - "major"
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: create_env
+        run: |
+          touch test.txt
+      - name: release github
+        run: |
+          echo "RELEASING TO GITHUB"
+      - name: release pypi
+        if: inputs.tags != 'prerelease'
+        run: |
+          echo "RELEASING TO PyPI"
