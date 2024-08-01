@@ -70,9 +70,10 @@ jobs:
         if: inputs.version_increase != 'prerelease'
         run: |
           echo "RELEASING TO PyPI, tag was ${{ inputs.version_increase }}"
-      - uses: actions/checkout@v4
-      - name: Merge version to dev
-        uses: DerTimonius/merge-branches@v1.0.1
+      - name: Merge main to dev
+        uses: devmasx/merge-branch
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branches: dev
+          type: now
+          from_branch: main
+          target_branch: dev
+          github_token: ${{ secrets.GITHUB_TOKEN }}
