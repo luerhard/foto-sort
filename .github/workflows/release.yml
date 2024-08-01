@@ -47,6 +47,11 @@ jobs:
           title: bump version ${{ inputs.version_increase }}
           delete-branch: true
           commit-message: bump version to ${{ steps.increase-version.outputs.version }}
+      - name: Merge PR
+        uses: pascalgn/automerge-action@v0.16.3
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          PULL_REQUEST: "${{ steps.create-pr.outputs.pull-request-number }}"
       - name: Check Version
         id: check-version
         run: |
