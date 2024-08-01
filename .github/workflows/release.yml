@@ -44,6 +44,7 @@ jobs:
           base: main
           branch: gh-action/bump-version
           title: Bump Version
+          delete-branch: true
           commit-message: create by github action to update version number
       - name: Check Version
         id: check-version
@@ -56,7 +57,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.increase-version.outputs.version }}
           draft: false
-          prerelease: steps.check-version.outputs.prerelease == 'true'
+          prerelease: ${{ steps.check-version.outputs.prerelease == 'true' }}
       - name: release pypi
         if: inputs.version_increase != 'prerelease'
         run: |
