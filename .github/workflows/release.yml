@@ -44,9 +44,9 @@ jobs:
         with:
           base: main
           branch: gh-action/bump-version
-          title: Bump Version
+          title: Bump Version to ${{ steps.increase_version.outputs.version }}
           delete-branch: true
-          commit-message: create by github action to update version number
+          commit-message: bump version to ${{ steps.increase_version.outputs.version }}
       - name: Merge pull request
         uses: KeisukeYamashita/auto-pull-request-merge@v1
         with:
