@@ -35,7 +35,7 @@ jobs:
         id: increase-version
         run: |
           poetry version ${{ inputs.version_increase }}
-          echo $(poetry version --short) >> $GITHUB_OUTPUT
+          echo version=$(poetry version --short) >> $GITHUB_OUTPUT
           
       - name: Build project
         run: poetry build
