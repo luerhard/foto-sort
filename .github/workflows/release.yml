@@ -71,7 +71,7 @@ jobs:
         run: |
           echo "RELEASING TO PyPI, tag was ${{ inputs.version_increase }}"
       - name: Merge main to dev
-        uses: devmasx/merge-branch
+        uses: devmasx/merge-branch@master
         with:
           type: now
           from_branch: main
