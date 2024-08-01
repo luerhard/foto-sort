@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Test Local Action
-        uses: DerTimonius/merge-git-branches@v1
+        uses: DerTimonius/merge-branches@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branches: '[dev]'
+          branches: dev
