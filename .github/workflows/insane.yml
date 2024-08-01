@@ -33,6 +33,6 @@ jobs:
         run: |
           echo "RELEASING TO GITHUB"
       - name: release pypi
-        if: inputs.tags != 'prerelease'
+        if: inputs.version_increase != 'prerelease'
         run: |
-          echo "RELEASING TO PyPI, tag was ${{ inputs.tags }}"
+          echo "RELEASING TO PyPI, tag was ${{ inputs.version_increase }}"
