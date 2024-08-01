@@ -48,10 +48,12 @@ jobs:
           delete-branch: true
           commit-message: bump version to ${{ steps.increase-version.outputs.version }}
       - name: Merge PR
-        uses: pascalgn/automerge-action@v0.16.3
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          PULL_REQUEST: "${{ steps.create-pr.outputs.pull-request-number }}"
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ steps.create-pr.outputs.pull-request-number }}
+          method: merge
+          repo: luerhard/foto-sort
       - name: Check Version
         id: check-version
         run: |
