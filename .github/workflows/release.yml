@@ -38,18 +38,13 @@ jobs:
           echo version=$(poetry version --short) >> $GITHUB_OUTPUT
       - name: Build project
         run: poetry build
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Bump version"
-          branch: gh-action/bump-version
-          create_branch: true
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
           base: main
           branch: gh-action/bump-version
           title: Bump Version
-          delete-branch: true
+          commit-message: create by github action to update version number
       - name: Check Version
         id: check-version
         run: |
