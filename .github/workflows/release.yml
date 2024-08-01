@@ -32,7 +32,11 @@ jobs:
       - name: Enable Poetry
         uses: abatilo/actions-poetry@v2
       - name: Increase Version
-        run: poetry version ${{ inputs.version_increase }}
+        id: increase-version
+        run: |
+          poetry version ${{ inputs.version_increase }}
+          echo $(poetry version --short) >> $GITHUB_OUTPUT
+          
       - name: Build project
         run: poetry build
       - name: Check Version
@@ -44,7 +48,7 @@ jobs:
         with:
           artifacts: "dist/*"
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: "$(poetry version --short)"
+          tag: ${{ steps.increase-version.outputs
           draft: false
           prerelease: steps.check-version.outputs.prerelease == 'true'
       - uses: stefanzweifel/git-auto-commit-action@v5
