@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version_increase:
-        description: "Version Number"
+        description: "Increase Version Number By"
         required: true
         default: "prerelease"
         type: choice
@@ -13,18 +13,12 @@ on:
         - "patch"
         - "minor"
         - "major"
-      tags:
-        description: "Release New Version"
-        required: true
-        type: string
 
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    env:
-
     steps:
       - name: create_env
         run: |
