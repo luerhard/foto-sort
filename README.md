@@ -2,6 +2,7 @@
 Sort fotos by date and location of file metadata
 
 # Installation
+
 ## Requirements
 This package requires ExifTool to be install beforehand.
 It is avalailabe for Windows, MacOS and Unix Platforms.
@@ -13,6 +14,10 @@ Installation instructions can be found [here](https://exiftool.org/install.html)
 
 ## Arch
 `sudo pacman -S perl-image-exiftool`
+
+## MacOS
+
+`brew install exiftool` 
 
 
 # Usage
