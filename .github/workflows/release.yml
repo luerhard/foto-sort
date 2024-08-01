@@ -48,7 +48,7 @@ jobs:
         with:
           artifacts: "dist/*"
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.increase-version.outputs
+          tag: ${{ steps.increase-version.outputs }}
           draft: false
           prerelease: steps.check-version.outputs.prerelease == 'true'
       - uses: stefanzweifel/git-auto-commit-action@v5
