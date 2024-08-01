@@ -26,4 +26,4 @@ jobs:
       - name: release pypi
         if: inputs.tags != 'prerelease'
         run: |
-          echo "RELEASING TO PyPI"
+          echo "RELEASING TO PyPI, tag was ${{ inputs.tags }}"
