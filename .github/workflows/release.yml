@@ -3,47 +3,26 @@ name: Release
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
-    if: github.ref == 'refs/heads/main'
+      - '^v*'
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-
-      - name: Install Poetry
+      - name: Check Tag for PyPI
+        id: check-tag
         run: |
-          curl -sSL https://install.python-poetry.org | python - -y
-
-      - name: Update PATH
-        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-
-      - name: Build project for distribution
-        run: poetry build
-
-      - name: Check Version
-        id: check-version
+          if [[ ${{ github.event.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "match=true" >> $GITHUB_OUTPUT
+          fi 
+      - name: create_env
         run: |
-          [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || echo prerelease=true >> $GITHUB_OUTPUT
-
-      # - name: Create Release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: "dist/*"
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     draft: false
-      #     prerelease: steps.check-version.outputs.prerelease == 'true'
-
-      # - name: Publish to PyPI
-      #   env:
-      #     POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
-      #   run: |
-      #     poetry publish -n
+          touch test.txt
+      - name: release github
+        run: |
+          echo "RELEASING TO GITHUB"
+      - name: release pypi
+        if: steps.check-tag.outputs.match == 'true'
+        run: |
+          echo "RELEASING TO PyPI"
