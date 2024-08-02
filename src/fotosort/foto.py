@@ -1,8 +1,5 @@
 import datetime as dt
 import hashlib
-from typing import Dict
-from typing import Optional
-from typing import Tuple
 
 from PIL import Image
 from PIL import UnidentifiedImageError
@@ -47,7 +44,7 @@ class Foto:
         self._file_hash = hashlib.sha1(img).hexdigest()
         return self._file_hash
 
-    def coordinates(self) -> Optional[Tuple[float, float]]:
+    def coordinates(self) -> tuple[float, float] | None:
         longitude = self.meta.get("EXIF:GPSLongitude")
         longitude_ref = self.meta.get("EXIF:GPSLongitudeRef")
         latitude = self.meta.get("EXIF:GPSLatitude")
@@ -64,7 +61,7 @@ class Foto:
 
         return latitude, longitude
 
-    def location(self) -> Dict[str, Optional[str]]:
+    def location(self) -> dict[str, str | None]:
         coords = self.coordinates()
         if not coords:
             return {"country": None, "city": None}
