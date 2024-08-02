@@ -61,10 +61,10 @@ def main(input, to, set_defaults, remove_defaults):
             logger.error("Error: No input path(s) given or set as default.")
         return
 
-    # for i in input:
-    #     logger.info("Importing folder: %s", i)
-    #     fotosort = FotoSort(Path(i), Path(to))
-    #     fotosort.run()
+    for i in input:
+        logger.info("Importing folder: %s", i)
+        fotosort = FotoSort(Path(i), Path(to))
+        fotosort.run()
 
 
 if __name__ == "__main__":
