@@ -27,7 +27,9 @@ jobs:
       #      install everything that is not python
       #----------------------------------------------
       - name: Install exiftool 
-        run: sudo apt install -y exiftool
+        run: |
+          sudo apt update
+          sudo apt install -y exiftool
       #----------------------------------------------
       #  -----  install & configure poetry
       #----------------------------------------------

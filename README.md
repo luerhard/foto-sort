@@ -30,6 +30,10 @@ Usage: fotoingest [OPTIONS]
 
 Options:
   -i, --input TEXT  Input folder. Multiple parameters are allowed.
-  -o, --to TEXT     Location of output folder.  [required]
+  -o, --to TEXT     Location of output folder.
+  --set_defaults    Set -i and -o options as defaults and remember them. Afterwards
+                      fotoingest can be run with no parameters and use these defaults
+                      instead.
+  --remove_defaults Remove defaults if there are any.
   --help            Show this message and exit.
 ```
