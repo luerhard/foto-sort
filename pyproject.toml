@@ -41,6 +41,7 @@ fotoingest = "fotosort.main:main"
 
 [tool.ruff]
 fix = true
+unsafe-fixes = true
 include = ["*.py", "*.pyi", "**/pyproject.toml", "*.ipynb"]
 select = [
 "ARG", # flake8-unused-arguments
@@ -57,6 +58,9 @@ select = [
 "PTH", # flake8-use-pathlib
 "Q", # flake8-quotes
 "UP", # pyupgrade
+]
+unfixable = [
+    "F401", # unused-import
 ]
 ignore = [
   "D100", # no module docstring
