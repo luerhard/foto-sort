@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "foto-sort"
-version = "0.2.0"
+version = "1.0.0"
 packages = [{include = "fotosort", from="src/"}]
 description = "Sort fotos by date and location of file metadata"
 authors = [
