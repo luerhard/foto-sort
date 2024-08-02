@@ -55,12 +55,14 @@ def main(input, to, set_defaults, remove_defaults):
         if not to:
             logger.error("Error: no output path given or set as default.")
             return
+
     if not input:
         input = config.get_in_paths()
         if not input:
             logger.error("Error: No input path(s) given or set as default.")
-        return
+            return
 
+    logger.info("Output folder: %s", to)
     for i in input:
         logger.info("Importing folder: %s", i)
         fotosort = FotoSort(Path(i), Path(to))
