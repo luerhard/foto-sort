@@ -5,7 +5,7 @@ import sqlite3
 import exiftool
 from tqdm import tqdm
 
-from fotosort.foto import Foto
+from .foto import Foto
 
 class FotoSort:
     INCLUDE_SUFFIX = {

@@ -3,13 +3,18 @@ from pathlib import Path
 
 from appdirs import user_config_dir
 
+from .logger import logger as log
+
 class ConfigManager:
     def __init__(self, config_file=None) -> None:
         if config_file is None:
             config_dir = Path(user_config_dir("fotosort", "luerhard"))
+            config_dir.mkdir(parents=True, exist_ok=True)
             self.config_file = config_dir / "config.ini"
         else:
             self.config_file = Path(config_file)
+        
+        log.debug("Config file: %s", str(self.config_file.absolute()))
 
         self.load()
 
@@ -59,25 +64,7 @@ class ConfigManager:
     def set_out_path(self, path):
         self.config["OUT"]["path"] = str(path.absolute())
         self.save()
+    
+    def delete(self):
+        self.config_file.unlink()
 
-
-if __name__ == "__main__":
-    test_path = Path(__file__).parent
-    config_file = test_path / "test_config.yaml"
-    test_path.mkdir(parents=True, exist_ok=True)
-
-    config = ConfigManager(config_file)
-
-    print(config.get_out_path())
-
-    out = Path("test")
-    out2 = Path("test2")
-    config.set_out_path(out)
-    config.set_in_paths([out, out2])
-    print(config.get_out_path())
-
-    ass
-
-    print(config.get_in_paths())
-
-    print("dones")

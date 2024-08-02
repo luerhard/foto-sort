@@ -1,6 +1,5 @@
 import datetime as dt
 import hashlib
-import logging
 from typing import Dict
 from typing import Optional
 from typing import Tuple
@@ -8,9 +7,6 @@ from typing import Tuple
 from PIL import Image
 from PIL import UnidentifiedImageError
 import reverse_geocode
-
-logger = logging.getLogger()
-
 
 class Foto:
 
