@@ -2,6 +2,7 @@ from pathlib import Path
 
 from fotosort.config_manager import ConfigManager
 
+
 def test_config_manager_out(tmp_path):
     test_path = Path(tmp_path).parent
     config_file = test_path / "test_config.yaml"

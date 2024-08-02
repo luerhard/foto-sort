@@ -5,6 +5,7 @@ import pytest
 
 from fotosort.foto import Foto
 
+
 @pytest.fixture()
 def original():
     return Path("tests/testdata/duplicates/original.jpg")
@@ -43,8 +44,8 @@ class TestFotoSortHashComparison:
         f = Foto(self.tool, foto)
         assert f.file_hash() == "282003a9cff7bbadb41fa05748c21775eb61dccd"
 
+
 class TestFotoSortCompleteRunNoDefault:
-        
     @classmethod
     def setup_class(cls):
         cls.tool = exiftool.ExifToolHelper()
@@ -53,11 +54,10 @@ class TestFotoSortCompleteRunNoDefault:
     @classmethod
     def teardown_class(cls):
         cls.tool.terminate()
-    
 
 
 # class TestFotoSortCompleteRunNoDefault:
-        
+
 #     @classmethod
 #     def setup_class(cls):
 #         cls.tool = exiftool.ExifToolHelper()
