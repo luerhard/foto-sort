@@ -1,9 +1,7 @@
-
 import datetime as dt
 import hashlib
 from typing import Dict
 from typing import Optional
-
 from typing import Tuple
 
 from PIL import Image
@@ -12,7 +10,6 @@ import reverse_geocode
 
 
 class Foto:
-
     exif_tags = [
         "EXIF:GPSLatitudeRef",
         "EXIF:GPSLatitude",
