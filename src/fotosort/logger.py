@@ -1,5 +1,5 @@
 import logging
 
-logging.basicConfig(level=logging.DEBUG, format="%(message)s")
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 logger = logging.getLogger("fotosort")
