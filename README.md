@@ -1,5 +1,14 @@
 # foto-sort
-Sort fotos by date and location of file metadata
+
+Sort fotos by date and location of file metadata.
+
+This package uses exif metadata and a reverse-geocoding to automatically sort your fotos into folders, separated by year and location. It additionally does deduplication of identical fotos using hashsums.
+
+That way you can:
+- run this tool any number of times with duplicating the fotos in your target folder.
+- you can rearrange the fotos in your target folder and still do not end up with duplications
+
+This tool creates a hidden file called .hashtable.sqlite in the root of your target folder.
 
 # Installation
 
@@ -37,3 +46,4 @@ Options:
   --remove_defaults Remove defaults if there are any.
   --help            Show this message and exit.
 ```
+
