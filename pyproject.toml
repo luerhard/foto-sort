@@ -23,7 +23,7 @@ classifiers = [
 
 # Requirements
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
+python = ">=3.10,<4.0"
 pyexiftool = ">=0.5.6"
 reverse-geocode = ">=1.4.1"
 numpy = [{version = ">=1.7", python = "<=3.12"}, {version = ">=1.26", python = ">=3.12"}]
