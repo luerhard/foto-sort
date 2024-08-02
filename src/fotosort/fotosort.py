@@ -1,12 +1,11 @@
+from pathlib import Path
 import shutil
 import sqlite3
-from pathlib import Path
 
 import exiftool
 from tqdm import tqdm
 
 from fotosort.foto import Foto
-
 
 class FotoSort:
     INCLUDE_SUFFIX = {

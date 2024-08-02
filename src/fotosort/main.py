@@ -6,7 +6,6 @@ import click
 
 from .fotosort import FotoSort
 
-
 @click.command()
 @click.option(
     "-i",
@@ -16,8 +15,7 @@ from .fotosort import FotoSort
 )
 @click.option("-o", "--to", required=True, help="Location of output folder.")
 def main(input, to):
-    """Sort fotos by date and location of file metadata"""
-
+    """Sort fotos by date and location of file metadata."""
     logger = logging.getLogger(__name__)
 
     for i in input:

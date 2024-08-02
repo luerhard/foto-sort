@@ -5,9 +5,9 @@ from typing import Dict
 from typing import Optional
 from typing import Tuple
 
-import reverse_geocode
 from PIL import Image
 from PIL import UnidentifiedImageError
+import reverse_geocode
 
 logger = logging.getLogger()
 
@@ -34,7 +34,8 @@ class Foto:
     def _read_metadata(self):
         meta = self.exif.get_tags(str(self.path), self.exif_tags)
         if len(meta) != 1:
-            raise Exception("Number of passed files != 1!")
+            msg = "Number of passed files != 1!"
+            raise Exception(msg)
         return meta[0]
 
     def file_hash(self):
@@ -80,22 +81,23 @@ class Foto:
         if self._datetime:
             return self._datetime
 
-        STD_FMT = "%Y:%m:%d %H:%M:%S"
+        std_fmt = "%Y:%m:%d %H:%M:%S"
 
         datetime = self.meta.get("EXIF:CreateDate")
         if datetime:
-            self._datetime = dt.datetime.strptime(datetime, STD_FMT)
+            self._datetime = dt.datetime.strptime(datetime, std_fmt)
             return self._datetime
 
         datetime = self.meta.get("EXIF:DateTimeOriginal")
         if datetime:
-            self._datetime = dt.datetime.strptime(datetime, STD_FMT)
+            self._datetime = dt.datetime.strptime(datetime, std_fmt)
             return self._datetime
 
         # try other fallback dates
         meta = self.exif.get_metadata(str(self.path))
         if len(meta) != 1:
-            raise Exception("Number of passed files != 1!")
+            msg = "Number of passed files != 1!"
+            raise Exception(msg)
         meta = meta[0]
 
         datetime = meta.get("RIFF:DateCreated")
@@ -105,5 +107,5 @@ class Foto:
 
         datetime = meta.get("Composite:DateTimeOriginal")
         if datetime:
-            self._datetime = dt.datetime.strptime(datetime, STD_FMT)
+            self._datetime = dt.datetime.strptime(datetime, std_fmt)
             return self._datetime
