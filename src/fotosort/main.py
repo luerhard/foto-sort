@@ -7,12 +7,10 @@ import click
 from .config_manager import ConfigManager
 from .fotosort import FotoSort
 
+
 @click.command()
 @click.option(
-    "-i",
-    "--input",
-    multiple=True,
-    help="Input folder. Multiple parameters are allowed.",
+    "-i", "--input", multiple=True, help="Input folder(s). Multiple parameters are allowed."
 )
 @click.option("-o", "--to", required=False, help="Location of output folder.")
 @click.option(
@@ -49,7 +47,7 @@ def main(input, to, set_defaults, remove_defaults):
             input = [Path(inp) for inp in input]
             config.set_in_paths(input)
         return
-    
+
     if not to:
         to = config.get_out_path()
         if not to:

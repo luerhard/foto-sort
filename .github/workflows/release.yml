@@ -16,8 +16,11 @@ on:
 
 
 jobs:
+  test:
+    uses: ./.github/workfows/test.yml@v1
   release:
     name: Release
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Install system dependencies

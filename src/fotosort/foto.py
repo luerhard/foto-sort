@@ -8,8 +8,8 @@ from PIL import Image
 from PIL import UnidentifiedImageError
 import reverse_geocode
 
-class Foto:
 
+class Foto:
     exif_tags = [
         "EXIF:GPSLatitudeRef",
         "EXIF:GPSLatitude",
@@ -48,7 +48,6 @@ class Foto:
         return self._file_hash
 
     def coordinates(self) -> Optional[Tuple[float, float]]:
-
         longitude = self.meta.get("EXIF:GPSLongitude")
         longitude_ref = self.meta.get("EXIF:GPSLongitudeRef")
         latitude = self.meta.get("EXIF:GPSLatitude")

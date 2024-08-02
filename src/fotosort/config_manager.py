@@ -5,6 +5,7 @@ from appdirs import user_config_dir
 
 from .logger import logger as log
 
+
 class ConfigManager:
     def __init__(self, config_file=None) -> None:
         if config_file is None:
@@ -13,7 +14,7 @@ class ConfigManager:
             self.config_file = config_dir / "config.ini"
         else:
             self.config_file = Path(config_file)
-        
+
         log.debug("Config file: %s", str(self.config_file.absolute()))
 
         self.load()
@@ -64,7 +65,6 @@ class ConfigManager:
     def set_out_path(self, path):
         self.config["OUT"]["path"] = str(path.absolute())
         self.save()
-    
+
     def delete(self):
         self.config_file.unlink()
-

@@ -7,6 +7,7 @@ from tqdm import tqdm
 
 from .foto import Foto
 
+
 class FotoSort:
     INCLUDE_SUFFIX = {
         ".avi",
@@ -34,7 +35,6 @@ class FotoSort:
         self.db = self.db_connect()
 
     def db_connect(self):
-
         table_stmt = """
         CREATE TABLE IF NOT EXISTS hashmap (
         hash TEXT PRIMARY KEY
@@ -77,7 +77,6 @@ class FotoSort:
                 return new
 
     def new_file_location(self, photo):
-
         file_path = self.dest_path
         date = photo.datetime()
         loc = photo.location()
